@@ -131,6 +131,10 @@ function disableButton() {
   } 
 }
 
+
+
+
+
 //Click anywhere on the log to toggle visibility of the log (text only, not the date) 
 // document.querySelectorAll('pre').addEventListener('toggle', logItems);
 
