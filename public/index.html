@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  data-theme="light">
   <head>
     <title>Student Logs</title>
     <meta charset="UTF-8">
-    <link rel="icon" href="https://cdn.sstatic.net/Sites/stackoverflow/Img/favicon.ico">
+    <link rel="icon" href="UVUMonogramGreen-0005.png">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    
-
-    
-    
+      
   <div>
+    <div class="mode">
+        Dark mode:            
+        <button
+        id="mode"
+        type="button"
+        data-theme-toggle
+        aria-label="Change to light theme"
+      >Off</button>
+    </div>
+      
+    
     <img src="UVUHorizontalBlack-0010.png"/>
     <form id="form1">
      <div id="align">
@@ -50,6 +58,21 @@
     </form>
     <img src="uvu_image.png">
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js">
+      
+    $(".change").on("click", function() {
+      console.log("jq");
+        if( $( "body" ).hasClass( "dark" )) {
+            $( "body" ).removeClass("dark" );
+            $( ".change" ).text( "OFF" );
+        } else {
+            $( "body" ).addClass( "dark" );
+            $( ".change" ).text("ON");
+        }
+    });
+
+</script>
     
     <script src="script.js"></script>
   </body>

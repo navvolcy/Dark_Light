@@ -14,7 +14,6 @@ img{
 }
 
 
-
 body{
   margin: 0;
 	padding: 0;
@@ -23,8 +22,24 @@ body{
 	align-items: center;
 	min-height: auto;
 	font-family: 'Jost', sans-serif;
-	background: #275d38;
+	background: var(--color-bg);
+	color: var(--color-fg);
 }
+
+
+[data-theme="light"] {
+	--color-bg:#275d38;
+	--color-fg: #0000;
+  }
+  
+  [data-theme="dark"] {
+	--color-bg:#0000 ;
+	--color-fg: #275d38;
+  }
+
+
+
+
 button{
  
 	width: 50%;
@@ -73,4 +88,23 @@ select {
 	  background-color: var(--option-bg);
 	}
   }
+
+/* .change {
+	cursor: pointer;
+	border: 1px solid #555;
+	border-radius: 40%;
+	width: 20px;
+	text-align: center;
+	padding: 5px;
+	margin-left: 8px;
+}
+.dark{
+	background-color: #222;
+	color: #e6e6e6;
+}*/
+
+.mode{
+	float: right;
+	
+} 
 

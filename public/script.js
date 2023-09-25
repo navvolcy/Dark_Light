@@ -1,5 +1,5 @@
 // AJAX to replace them with dynamic data from GET https://json-server-ft3qa5--3000.local.webcontainer.io/api/v1/courses
-//https://jsonserverbezxrx-sfe1--3000--33975f1d.local-credentialless.webcontainer.io/api/v1/logs
+// https://jsonserverbezxrx-sfe1--3000--33975f1d.local-credentialless.webcontainer.io/api/v1/logs
 
 fetch('http://localhost:3000/courses')
   .then(res => res.json())
@@ -25,6 +25,72 @@ selectElement.addEventListener("change", (event) => {
   uvu = document.getElementById("studentID");
   uvu.style.display = event.target.value === ""? "none" : "block";
 })
+
+
+// function to calculate the current theme setting.
+// * Look for a local storage value.
+// * Fall back to system setting.
+// * Fall back to light mode.
+function calculateThemeSetting({localStorageTheme, systemSettingDark}){
+  if (localStorageTheme !== null){
+    return localStorageTheme;
+  }
+  if(systemSettingDark.matches){
+    return "dark";
+  }
+  return "light";
+}
+
+// Utility function to update the button text and aria-label
+function updateButton({buttonE1, isDark}){
+  const newCta = isDark ? "Off" : "On";
+
+
+  //buttonE1.setAttribute("aria-label", newCta);
+  buttonE1.innerText = newCta;
+}
+// Utility function to update the theme setting on the html tag
+function updateTheme({theme}){
+  document.querySelector("html").setAttribute("data-theme")
+}
+
+//Grab what we need from the DOM and system settings on page load
+const button = document.querySelector("[data-theme-toggle]");
+// get theme on page load
+const localStorageTheme = localStorage.getItem("theme");
+const systemSettingDark = window.matchMedia("(pre-color-scheme: dark)");
+
+// Work out the current site settings
+let currentThemeSetting = calculateThemeSetting({localStorageTheme, systemSettingDark});
+// Update the theme setting and button text accoridng to current settings
+updateButton({ buttonEl: button, isDark: currentThemeSetting === "dark" });
+updateTheme({ theme: currentThemeSetting});
+
+// Add an event listener to toggle the theme
+button.addEventListener("click", (event) => {
+  const newTheme = currentThemeSetting === "dark" ? "light" : "dark";
+
+  localStorage.setItem("theme",newTheme);
+  updateButton({buttonE1: button, isDark: newTheme === "dark"});
+  updateTheme({theme:newTheme});
+  currentThemeSetting = newTheme;
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //replace them with dynamic data by ajaxing GET https://json-server-ft3qa5--3000.local.webcontainer.io/logs?courseId=<courseID>&uvuId=<uvuID>
 document.getElementById('uvuId').addEventListener('input', handleOnChange);
@@ -135,12 +201,6 @@ function disableButton() {
 
 
 
-//Click anywhere on the log to toggle visibility of the log (text only, not the date) 
-// document.querySelectorAll('pre').addEventListener('toggle', logItems);
 
-// function logItems(){
-//   const item = document.querySelector('p');
-//   item.toggleAttribute("hidden");
 
-// }
 
